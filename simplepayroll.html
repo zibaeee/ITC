@@ -1,0 +1,131 @@
+ 
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Payroll</title>
+    <link rel="stylesheet" href="simplepayroll.css">
+</head>
+<body onload="initpayroll()">
+    <div class="top-bar"><b>Simple Payroll</b><div class="back-link">
+        <a href="index.html">Back to Home Page</a>
+    </div></div>
+    <main>
+        <div class="container">
+            <div class="title-container">
+                <h1 class="sw-title"><i>Employee Payroll</i></h1>
+            </div>
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="employname">Employee Name:</label>
+                    <input type="text" id="employname" name="employname">
+                </div>
+                <div class="input-group">
+                    <label for="daysworked">Days Worked:</label>
+                    <input type="number" id="daysworked" name="daysworked">
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="dayrate">Daily Rate:</label>
+                    <input type="number" id="dayrate" name="dayrate">
+                </div>
+                <div class="input-group">
+                    <label for="dedamount">Deduction Amount:</label>
+                    <input type="number" id="dedamount" name="dedamount">
+                </div>
+            </div>
+            <div class="form-container">
+                <button onclick="addtoPayroll()"><b>Add to Payroll</b></button>
+            </div>
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="delemployee">Delete Employee (Line No.):</label>
+                    <input type="number" id="delemployee" name="delemployee">
+                </div>
+                <div class="input-group">
+                    <button onclick="deleteEmployee()"><b>Delete Employee</b></button>
+                </div>
+            </div>
+            <div id="payroll"></div>
+        </div>
+    </main>
+    <div class="footer"><b>by Ziba S. Sarona © 2024</b></div>
+    <script>function initpayroll() {
+    payroll = [];
+    document.getElementById("payroll").innerHTML = "";
+}
+function addtoPayroll() {
+    var employee = {
+        "name": document.getElementById("employname").value,
+        "daysworked": parseInt(document.getElementById("daysworked").value),
+        "dayrate": parseFloat(document.getElementById("dayrate").value),
+        "dedamount": parseFloat(document.getElementById("dedamount").value),
+        "grosspay": function() {
+            return Math.round(this.daysworked * this.dayrate * 100) / 100;
+        },
+        "netpay": function() {
+            return Math.round((this.grosspay() - this.dedamount) * 100) / 100;
+        }
+    };
+    payroll.push(employee);
+    showPayroll();
+}
+function computepay() {
+    var q = parseInt(document.getElementById("daysworked").value);
+    var p = parseFloat(document.getElementById("dayrate").value);
+    var d = parseFloat(document.getElementById("dedamount").value);
+
+    var gross = Math.round(q * p * 100) / 100;
+    var net = Math.round((gross - d) * 100) / 100;
+}
+function deleteEmployee() {
+    var empNo = parseInt(document.getElementById("delemployee").value) - 1; 
+    if (empNo >= 0 && empNo < payroll.length) {
+        payroll.splice(empNo, 1); 
+        showPayroll();
+    } else {
+        alert("Invalid employee number.");
+    }
+}
+function showPayroll() {
+    var tbody = '';
+    var totalGrossPay = 0;
+    var theader = "<thead>"
+        + "<tr>"
+        + "<th>No.</th>"
+        + "<th>Employee Name</th>"
+        + "<th>Days Worked</th>"
+        + "<th>Daily Rate</th>"
+        + "<th>Gross Pay</th>"
+        + "<th>Deduction</th>"
+        + "<th>Net Pay</th>"
+        + "</tr>"
+        + "</thead>";
+    for (var i = 0; i < payroll.length; i++) {
+        var emp = payroll[i];
+        var empLine = i + 1;
+        tbody += "<tr>"
+            + "<td>" + empLine + "</td>"
+            + "<td>" + emp.name + "</td>"
+            + "<td style='text-align:right'>" + emp.daysworked + "</td>"
+            + "<td style='text-align:right'>" + emp.dayrate.toFixed(2) + "</td>"
+            + "<td style='text-align:right'>" + emp.grosspay().toFixed(2) + "</td>"
+            + "<td style='text-align:right'>" + emp.dedamount.toFixed(2) + "</td>"
+            + "<td style='text-align:right'>" + emp.netpay().toFixed(2) + "</td>"
+            + "</tr>";
+        totalGrossPay += emp.grosspay();
+    }
+    var tfooter = "<tfoot>"
+        + "<tr>"
+        + "<th colspan='5'>Total Gross Pay</th>"
+        + "<th colspan='2' style='text-align:right'>" + totalGrossPay.toFixed(2) + "</th>"
+        + "</tr>"
+        + "</tfoot>";
+    document.getElementById("payroll").innerHTML = "<table>" + theader + "<tbody>" + tbody + "</tbody>" + tfooter + "</table>";
+}
+var payroll = [];</script>
+</body>
+</html>
