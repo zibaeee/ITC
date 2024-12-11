@@ -1,0 +1,50 @@
+ 
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator Program</title>
+    <link rel="stylesheet" href="incometaxcalculator.css">
+</head>
+<body>
+    <div class="top-bar"><b>Income Tax Calculator</b><div class="back-link">
+        <a href="index.html">Back to Home Page</a>
+    </div></div>
+    
+    <main>
+        <div class="container">
+            <div class="title-container">
+                <h1 class="sw-title"><i>Taxable Income</i></h1>
+                <input type="number" id="inputValue" placeholder="Enter Taxable Income">
+                <button onclick="computetax()"><b>Compute Tax</b></button>
+                <div id="taxoutput"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer"><b>by Ziba S. Sarona © 2024</b></div>
+        <script>function computetax() {
+    var taxinput, taxincome;
+    taxinput = document.getElementById("inputValue").value * 1;
+    console.log(taxinput);
+  
+    if (taxinput < 250000) {
+      taxincome = taxinput * 0;
+    } else if (taxinput >= 250000 && taxinput <= 400000) {
+      taxincome = (taxinput - 250000) * 0.20;
+    } else if (taxinput >= 400000 && taxinput <= 800000) {
+      taxincome = (taxinput - 400000) * 0.25 + 30000;
+    } else if (taxinput >= 800000 && taxinput <= 2000000) {
+      taxincome = (taxinput - 800000) * 0.30 + 130000;
+    } else if (taxinput >= 2000000 && taxinput <= 8000000) {
+      taxincome = (taxinput - 2000000) * 0.32 + 490000;
+    } else {
+      taxincome = (taxinput - 8000000) * 0.35 + 2410000;
+    }
+    document.getElementById("taxoutput").innerHTML = 'Income Tax Is: ' + taxincome;
+  }
+  </script>
+</body>
+</html>
