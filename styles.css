@@ -1,0 +1,107 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E8EBD3;
+            color: #4A5240;
+            font-size: 14px; /* Reduced font size */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background-color: #A3B18A;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.8rem; /* Adjusted font size */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .title-container {
+            text-align: center;
+            margin: 100px 20px 20px;
+            padding: 0 10px;
+        }
+
+        .sw-title {
+            font-size: 2.5rem; /* Adjusted font size */
+            color: #4A5240;
+            margin-top: 10px;
+            word-wrap: break-word;
+        }
+
+        .assignments-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .menu-button {
+            background-color: #6C7A57;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem; /* Reduced font size */
+            padding: 8px 15px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+            max-width: 500px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-button:hover {
+            background-color: #556146;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer {
+            background-color: #A3B18A;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8rem; /* Reduced font size */
+            box-sizing: border-box;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .sw-title {
+                font-size: 2rem;
+            }
+
+            .menu-button {
+                font-size: 0.9rem;
+                padding: 8px 10px;
+            }
+
+            .top-bar {
+                font-size: 1.5rem;
+            }
+
+            .title-container {
+                margin: 80px 10px;
+            }
+
+            .assignments-menu {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
