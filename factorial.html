@@ -1,0 +1,73 @@
+ 
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Factorial, Sum, and Average Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="factorial.css">
+</head>
+<body>
+   <div class="top-bar">
+    <b>Factorial, Sum, and Average Calculator</b>
+    <div class="back-link">
+        <a href="index.html">Back to Home Page</a>
+    </div>
+    </div>
+<main>
+    <div class="container">
+        <div class="title-container">
+            <h1 class="sw-title"><i>Calculator</i></h1>
+        <input type="number" id="nnumber" name="nnumber" placeholder="Enter Value">
+        <button type="button" class="button" id="calculateButton"><b>Calculate</b></button>
+    </div>
+    <div class="results" id="results-container">
+        <h2>Results</h2>
+        <label for="factorResult" id="factorLabel">Factorial:</label>
+        <input type="number" id="factorResult" name="factorResult" readonly><br>
+        <label for="summationResult" id="summationLabel">Summation:</label>
+        <input type="number" id="summationResult" name="summationResult" readonly><br>
+        <label for="avgResult" id="avgLabel">Average:</label>
+        <input type="number" id="avgResult" name="avgResult" readonly><br>
+    </div>
+</main>
+
+    <div class="footer"><b>by Ziba S. Sarona © 2024</b></div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("calculateButton").addEventListener("click", calculateResults);
+});
+
+function calculateResults() {
+    let n = parseInt(document.getElementById('nnumber').value, 10);
+
+    if (isNaN(n) || n <= 0) {
+        alert("Please enter a valid number.");
+        return;
+    }
+
+    // Calculate Factorial
+    let factorial = 1;
+    for (let i = 1; i <= n; i++) {
+        factorial *= i;
+    }
+
+    // Calculate Summation
+    let summation = 0;
+    for (let j = 1; j <= n; j++) {
+        summation += j;
+    }
+
+    // Calculate Average
+    let average = summation / n;
+
+    // Display results in readonly input fields
+    document.getElementById('factorResult').value = factorial;
+    document.getElementById('summationResult').value = summation;
+    document.getElementById('avgResult').value = average.toFixed(2); // Limit to 2 decimal places for average
+}</script>
+</body>
+</html>
