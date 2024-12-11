@@ -1,0 +1,62 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Tool</title>
+    <link rel="stylesheet" href="conversion.css">
+</head>
+<body>
+  <div class="top-bar"><b>Conversion Tool</b><div class="back-link">
+        <a href="index.html">Back to Home Page</a>
+    </div></div>
+    <main>
+        <div class="container">
+            <div class="title-container">
+              <h1 class="sw-title"><i>Select Conversion Type</i></h1>
+                <select id="conversionType">
+                    <option value="computeconvc">Celsius to Fahrenheit</option>
+                    <option value="computeconvf">Fahrenheit to Celsius</option>
+                    <option value="computemtf">Meters to Feet</option>
+                    <option value="computeftm">Feet to Meters</option>
+                </select>
+                <input type="number" id="inputValue" placeholder="Enter Value">
+                <button onclick="convert()"><b>Convert</b></button>
+                <input type="text" id="resultInput" readonly>
+            </div>
+        </div>
+    </main>
+    <div class="footer"><b>by Ziba S. Sarona © 2024</b></div>
+    <script>
+        function convert() {
+    const conversionType = document.getElementById("conversionType").value;
+    const inputValue = parseFloat(document.getElementById("inputValue").value);
+    let result;
+
+    switch (conversionType) {
+        case "computeconvc":
+            result = (inputValue * 9/5) + 32;
+            document.getElementById("resultInput").value = `${inputValue}°C = ${result.toFixed(2)}°F`;
+            break;
+        case "computeconvf":
+            result = (inputValue - 32) * 5/9;
+            document.getElementById("resultInput").value = `${inputValue}°F = ${result.toFixed(2)}°C`;
+            break;
+        case "computemtf":
+            result = inputValue * 3.28084;
+            document.getElementById("resultInput").value = `${inputValue} meters = ${result.toFixed(2)} feet`;
+            break;
+        case "computeftm":
+            result = inputValue / 3.28084;
+            document.getElementById("resultInput").value = `${inputValue} feet = ${result.toFixed(2)} meters`;
+            break;
+        default:
+            document.getElementById("resultInput").value = "Invalid conversion type.";
+    }
+
+    document.getElementById("resultInput").style.display = "block";
+}
+    </script>
+</body>
+</html>
